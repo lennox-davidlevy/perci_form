@@ -101,15 +101,17 @@ const InputForm = () => {
           onKeyDown={handleKeyDown}
           placeholder="Enter"
         />
-        {[...formValues.seo].map((item) => (
-          <div
-            className="seo_items"
-            key={item}
-            onClick={() => handleDeleteFromSet('seo', item)}
-          >
-            {item}
-          </div>
-        ))}
+        <div className="list_items">
+          {[...formValues.seo].map((item) => (
+            <div
+              className="list_item"
+              key={item}
+              onClick={() => handleDeleteFromSet('seo', item)}
+            >
+              {item}
+            </div>
+          ))}
+        </div>
         <label htmlFor="tone_select">Tone *</label>
         <select
           name="tone"
@@ -133,15 +135,17 @@ const InputForm = () => {
           onChange={handleChange}
           placeholder="Enter"
         />
-        {[...formValues.characteristic].map((item) => (
-          <div
-            className="list_item"
-            key={item}
-            onClick={() => handleDeleteFromSet('characteristic', item)}
-          >
-            {item}
-          </div>
-        ))}
+        <div className="list_items">
+          {[...formValues.characteristic].map((item) => (
+            <div
+              className="list_item"
+              key={item}
+              onClick={() => handleDeleteFromSet('characteristic', item)}
+            >
+              {item}
+            </div>
+          ))}
+        </div>
       </form>
       <button onClick={handleSubmit}>SUBMIT</button>
     </div>
