@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { gender, tone } from '../utilities';
 const InputForm = () => {
   const [formValues, setFormValues] = useState({
     gender: 'Womens',
@@ -42,6 +43,20 @@ const InputForm = () => {
     });
   };
 
+  const handleEnter = (e) => {
+    if (e.keyCode === 13) {
+      const form = e.target.form;
+      const index = Array.prototype.indexOf.call(form, e.target);
+      form.elements[index + 1].focus();
+      e.preDefault();
+    }
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log(formValues);
+  };
+
   return (
     <div className="form_container">
       <form>
@@ -52,9 +67,11 @@ const InputForm = () => {
           value={formValues.gender}
           onChange={handleChange}
         >
-          <option value="Womens">Womens</option>
-          <option value="Mens">Mens</option>
-          <option value="Unisex">Unisex</option>
+          {gender.map((item) => (
+            <option key={item} value={item}>
+              {item}
+            </option>
+          ))}
         </select>
         <label htmlFor="title_input">Title *</label>
         <input
@@ -63,6 +80,7 @@ const InputForm = () => {
           value={formValues.title}
           name="title"
           onChange={handleChange}
+          onKeyDown={handleEnter}
         />
         <label htmlFor="brand_input">Brand</label>
         <input
@@ -71,6 +89,7 @@ const InputForm = () => {
           value={formValues.brand}
           name="brand"
           onChange={handleChange}
+          onKeyDown={handleEnter}
         />
         <label htmlFor="seo_input">SEO Keywords</label>
         <input
@@ -98,12 +117,11 @@ const InputForm = () => {
           value={formValues.tone}
           onChange={handleChange}
         >
-          <option value="Straightforward">Straightforward</option>
-          <option value="Friendly">Friendly</option>
-          <option value="Cute">Cute</option>
-          <option value="Poetic">Poetic</option>
-          <option value="Luxe">Luxe</option>
-          <option value="Romantic">Romantic</option>
+          {tone.map((item) => (
+            <option value={item} key={item}>
+              {item}
+            </option>
+          ))}
         </select>
         <label htmlFor="characteristics_input">Product characteristics *</label>
         <input
@@ -117,7 +135,7 @@ const InputForm = () => {
         />
         {[...formValues.characteristic].map((item) => (
           <div
-            className="characteristic_items"
+            className="list_item"
             key={item}
             onClick={() => handleDeleteFromSet('characteristic', item)}
           >
@@ -125,6 +143,7 @@ const InputForm = () => {
           </div>
         ))}
       </form>
+      <button onClick={handleSubmit}>SUBMIT</button>
     </div>
   );
 };

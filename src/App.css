@@ -2,8 +2,21 @@
   box-sizing: border-box;
 }
 
+.form_container {
+  width: 50%;
+  padding: 20px;
+}
+
 .form_container > label,
 select,
 input {
   display: block;
+}
+
+input,
+select {
+  padding: 5px;
+  font-size: 15px;
+  width: 100%;
+  height: 30px;
 }
