@@ -26,6 +26,17 @@ router.post('/', async (req, res, next) => {
     synArray.forEach((item, index) => {
       synArray[index] = item || new Array(3).fill(characteristic[index]);
     });
+    const result = [{ gender, title, brand, characteristic, seo }];
+    for (let i = 0; i < 3; i++) {
+      let tempChar = [];
+      for (let j = 0; j < synArray.length; j++) {
+        let item = synArray[j];
+        tempChar.push(synArray[j][i]);
+      }
+      let tempItem = { ...result[0], characteristic: tempChar };
+      result.push(tempItem);
+    }
+    res.send(result);
   } catch (err) {
     console.log(err);
   }
