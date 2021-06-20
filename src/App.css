@@ -30,3 +30,7 @@ select {
   gap: 5px;
   padding: 2px;
 }
+.change_page_container {
+  display: flex;
+  gap: 12px;
+}

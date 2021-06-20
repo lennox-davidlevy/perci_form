@@ -3,18 +3,19 @@ import axios from 'axios';
 import InputForm from './Components/InputForm';
 import Output from './Components/Output';
 import './App.css';
-
+const initialState = {
+  gender: 'Womens',
+  title: '',
+  brand: '',
+  tone: 'Straightforward',
+  seo_text: '',
+  characteristic_text: '',
+  characteristic: new Set(),
+  seo: new Set(),
+};
 function App() {
-  const [formValues, setFormValues] = useState({
-    gender: 'Womens',
-    title: '',
-    brand: '',
-    tone: 'Straightforward',
-    seo_text: '',
-    characteristic_text: '',
-    characteristic: new Set(),
-    seo: new Set(),
-  });
+  const [formValues, setFormValues] = useState(initialState);
+  const [output, setOutput] = useState([]);
 
   const submitData = (data) => {
     let { characteristic, seo } = data;
@@ -23,8 +24,14 @@ function App() {
     data = { ...data, characteristic, seo };
     axios
       .post('/synonym', data)
-      .then((response) => console.log(response))
+      .then((response) => {
+        setOutput(response.data);
+      })
       .catch((err) => console.log(err));
+  };
+  const clearData = (e) => {
+    e.preventDefault();
+    setFormValues(initialState);
   };
 
   return (
@@ -34,8 +41,9 @@ function App() {
         formValues={formValues}
         setFormValues={setFormValues}
         submitData={submitData}
+        clearData={clearData}
       />
-      <Output />
+      <Output data={output} />
     </div>
   );
 }

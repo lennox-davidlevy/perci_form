@@ -8,7 +8,7 @@ router.get('/', (req, res, next) => {
 });
 
 router.post('/', async (req, res, next) => {
-  const { gender, title, brand, characteristic, seo } = req.body;
+  const { gender, title, brand, characteristic, tone, seo } = req.body;
   const synonymCalls = characteristic.map((word) => {
     return `https://www.dictionaryapi.com/api/v3/references/thesaurus/json/${word}?key=${apiKey}`;
   });
@@ -26,7 +26,7 @@ router.post('/', async (req, res, next) => {
     synArray.forEach((item, index) => {
       synArray[index] = item || new Array(3).fill(characteristic[index]);
     });
-    const result = [{ gender, title, brand, characteristic, seo }];
+    const result = [{ gender, title, brand, characteristic, tone, seo }];
     for (let i = 0; i < 3; i++) {
       let tempChar = [];
       for (let j = 0; j < synArray.length; j++) {

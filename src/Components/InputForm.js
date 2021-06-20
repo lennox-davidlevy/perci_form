@@ -1,6 +1,5 @@
-import React, { useState } from 'react';
 import { gender, tone } from '../utilities';
-const InputForm = ({ formValues, setFormValues, submitData }) => {
+const InputForm = ({ formValues, setFormValues, submitData, clearData }) => {
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormValues((prevValues) => {
@@ -137,8 +136,21 @@ const InputForm = ({ formValues, setFormValues, submitData }) => {
           ))}
         </div>
       </form>
-      <button disabled={formValues.title === ''} onClick={handleSubmit}>
+      <button
+        disabled={
+          formValues.title === '' || formValues.characteristic.size === 0
+        }
+        onClick={handleSubmit}
+      >
         SUBMIT
+      </button>
+      <button
+        disabled={
+          formValues.title === '' || formValues.characteristic.size === 0
+        }
+        onClick={clearData}
+      >
+        CLEAR
       </button>
     </div>
   );
