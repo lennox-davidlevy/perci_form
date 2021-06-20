@@ -1,17 +1,6 @@
 import React, { useState } from 'react';
 import { gender, tone } from '../utilities';
-const InputForm = () => {
-  const [formValues, setFormValues] = useState({
-    gender: 'Womens',
-    title: '',
-    brand: '',
-    tone: 'Straightforward',
-    seo_text: '',
-    characteristic_text: '',
-    characteristic: new Set(),
-    seo: new Set(),
-  });
-
+const InputForm = ({ formValues, setFormValues, submitData }) => {
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormValues((prevValues) => {
@@ -48,17 +37,18 @@ const InputForm = () => {
       const form = e.target.form;
       const index = Array.prototype.indexOf.call(form, e.target);
       form.elements[index + 1].focus();
-      e.preDefault();
+      e.preventDefault();
     }
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(formValues);
+    submitData(formValues);
   };
 
   return (
     <div className="form_container">
+      <div className="component_title">Description Input</div>
       <form>
         <label htmlFor="gender_select">Gender *</label>
         <select
@@ -147,7 +137,9 @@ const InputForm = () => {
           ))}
         </div>
       </form>
-      <button onClick={handleSubmit}>SUBMIT</button>
+      <button disabled={formValues.title === ''} onClick={handleSubmit}>
+        SUBMIT
+      </button>
     </div>
   );
 };
