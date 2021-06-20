@@ -5,15 +5,43 @@ const InputForm = () => {
     title: '',
     brand: '',
     tone: 'Straightforward',
-    characteristics: [],
-    seo: [],
+    seo_text: '',
+    characteristic_text: '',
+    characteristic: new Set(),
+    seo: new Set(),
   });
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormValues((prevValues) => {
       return { ...prevValues, [name]: value };
     });
   };
+
+  const handleAddToSet = (name, value) => {
+    const newSet = new Set(formValues[name]).add(value);
+    setFormValues((prevValues) => {
+      return { ...prevValues, [name]: newSet };
+    });
+  };
+
+  const handleDeleteFromSet = (name, value) => {
+    const newSet = new Set(formValues[name]);
+    newSet.delete(value);
+    setFormValues((prevValues) => {
+      return { ...prevValues, [name]: newSet };
+    });
+  };
+
+  const handleKeyDown = (e) => {
+    if (e.key !== 'Enter') return;
+    const { value, name } = e.target;
+    handleAddToSet(name.split('_')[0], value.toLowerCase());
+    setFormValues((prevValues) => {
+      return { ...prevValues, [name]: '' };
+    });
+  };
+
   return (
     <div className="form_container">
       <form>
@@ -45,7 +73,24 @@ const InputForm = () => {
           onChange={handleChange}
         />
         <label htmlFor="seo_input">SEO Keywords</label>
-        <input type="text" id="seo_input" />
+        <input
+          type="text"
+          id="seo_input"
+          value={formValues.seo_text}
+          onChange={handleChange}
+          name="seo_text"
+          onKeyDown={handleKeyDown}
+          placeholder="Enter"
+        />
+        {[...formValues.seo].map((item) => (
+          <div
+            className="seo_items"
+            key={item}
+            onClick={() => handleDeleteFromSet('seo', item)}
+          >
+            {item}
+          </div>
+        ))}
         <label htmlFor="tone_select">Tone *</label>
         <select
           name="tone"
@@ -61,7 +106,24 @@ const InputForm = () => {
           <option value="Romantic">Romantic</option>
         </select>
         <label htmlFor="characteristics_input">Product characteristics *</label>
-        <input type="text" id="characteristics_input" />
+        <input
+          name="characteristic_text"
+          type="text"
+          id="characteristics_input"
+          onKeyDown={handleKeyDown}
+          value={formValues.characteristic_text}
+          onChange={handleChange}
+          placeholder="Enter"
+        />
+        {[...formValues.characteristic].map((item) => (
+          <div
+            className="characteristic_items"
+            key={item}
+            onClick={() => handleDeleteFromSet('characteristic', item)}
+          >
+            {item}
+          </div>
+        ))}
       </form>
     </div>
   );
