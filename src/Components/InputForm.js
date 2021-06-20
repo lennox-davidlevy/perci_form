@@ -136,15 +136,17 @@ const InputForm = ({ formValues, setFormValues, submitData, clearData }) => {
           ))}
         </div>
       </form>
-      <button
-        disabled={
-          formValues.title === '' || formValues.characteristic.size === 0
-        }
-        onClick={handleSubmit}
-      >
-        SUBMIT
-      </button>
-      <button onClick={clearData}>CLEAR</button>
+      <div className="button_group">
+        <button
+          disabled={
+            formValues.title === '' || formValues.characteristic.size === 0
+          }
+          onClick={handleSubmit}
+        >
+          SUBMIT
+        </button>
+        <button onClick={clearData}>CLEAR</button>
+      </div>
     </div>
   );
 };

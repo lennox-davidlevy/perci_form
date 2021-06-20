@@ -26,6 +26,14 @@ select,
 input {
   display: block;
 }
+.component_container > form {
+  min-height: 500px;
+}
+.button_group {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
 
 input,
 select {
@@ -64,6 +72,13 @@ select {
   border-radius: 5px;
   margin: 10px 0 10px 0;
   padding: 10px;
+  min-height: 500px;
+  max-height: 500px;
+  overflow: hidden;
+  overflow-y: scroll;
+}
+.ouput_display_container > div {
+  margin-bottom: 10px;
 }
 
 .component_title {
@@ -73,6 +88,24 @@ select {
   text-transform: capitalize;
 }
 
+.display_container {
+  height: 100%;
+  overflow-y: scroll;
+  overflow: hidden;
+}
+button {
+  color: white;
+  background-color: rgb(51, 94, 234);
+  font-weight: 600;
+  height: 30px;
+  width: 100px;
+}
+
+.top_control {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
 @media only screen and (max-width: 1000px) {
   .app_container {
     display: flex;
@@ -82,4 +115,7 @@ select {
   .component_container {
     width: 75%;
   }
+}
+ul {
+  list-style: none;
 }

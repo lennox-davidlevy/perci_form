@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import OutputDisplay from './OutputDisplay';
 
 const Output = ({ data, page, setPage }) => {
+  const [showJSON, setShowJSON] = useState(false);
   const pageDown = (e) => {
     e.preventDefault();
     if (data.length === 0) return;
@@ -14,9 +15,18 @@ const Output = ({ data, page, setPage }) => {
   };
   return (
     <div className="component_container">
-      <div className="component_title">GTP-3 arguments</div>
+      <div className="top_control">
+        <div className="component_title">GTP-3 arguments</div>
+        <button onClick={() => setShowJSON(!showJSON)}>Show JSON</button>
+      </div>
       {data.length === 0 && <div className="ouput_display_container"></div>}
-      {data.length > 0 && <OutputDisplay data={data[page]} />}
+      {data.length > 0 && (
+        <OutputDisplay
+          data={data[page]}
+          completeData={data}
+          showJSON={showJSON}
+        />
+      )}
       <div className="change_page_container">
         <button onClick={pageDown}>Prev Page</button>
         <div className="page_number">{page + 1}</div>
