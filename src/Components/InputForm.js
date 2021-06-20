@@ -46,7 +46,7 @@ const InputForm = ({ formValues, setFormValues, submitData, clearData }) => {
   };
 
   return (
-    <div className="form_container">
+    <div className="component_container">
       <div className="component_title">Description Input</div>
       <form>
         <label htmlFor="gender_select">Gender *</label>
@@ -144,14 +144,7 @@ const InputForm = ({ formValues, setFormValues, submitData, clearData }) => {
       >
         SUBMIT
       </button>
-      <button
-        disabled={
-          formValues.title === '' || formValues.characteristic.size === 0
-        }
-        onClick={clearData}
-      >
-        CLEAR
-      </button>
+      <button onClick={clearData}>CLEAR</button>
     </div>
   );
 };

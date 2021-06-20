@@ -2,23 +2,30 @@ import React from 'react';
 
 const OutputDisplay = ({ data }) => {
   const { gender, title, brand, characteristic, tone, seo } = data;
+  let outputDisplayRender = <div className="output_display_container"></div>;
   return (
-    <div>
+    <div className="ouput_display_container">
       <div>Output display</div>
       <div className="output_display_container">
-        <div>{gender}</div>
-        <div>{title}</div>
-        <div>{brand}</div>
+        <div>Gender: {gender}</div>
+        <div>Title: {title}</div>
+        <div>Brand: {brand}</div>
         <div>
-          {seo.map((item, index) => (
-            <div key={item + index}>{item}</div>
-          ))}
+          SEO Keywords:
+          <ul>
+            {seo.map((item, index) => (
+              <li key={item + index}>{item}</li>
+            ))}
+          </ul>
         </div>
-        <div>{tone}</div>
+        <div>Tone: {tone}</div>
         <div>
-          {characteristic.map((item, index) => (
-            <div key={item + index}>{item}</div>
-          ))}
+          Characteristics:
+          <ul>
+            {characteristic.map((item, index) => (
+              <li key={item + index}>{item}</li>
+            ))}
+          </ul>
         </div>
       </div>
     </div>

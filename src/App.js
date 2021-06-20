@@ -16,6 +16,7 @@ const initialState = {
 function App() {
   const [formValues, setFormValues] = useState(initialState);
   const [output, setOutput] = useState([]);
+  const [page, setPage] = useState(0);
 
   const submitData = (data) => {
     let { characteristic, seo } = data;
@@ -32,18 +33,19 @@ function App() {
   const clearData = (e) => {
     e.preventDefault();
     setFormValues(initialState);
+    setOutput([]);
+    setPage(0);
   };
 
   return (
     <div className="app_container">
-      <div className="app_header">Perci.ai</div>
       <InputForm
         formValues={formValues}
         setFormValues={setFormValues}
         submitData={submitData}
         clearData={clearData}
       />
-      <Output data={output} />
+      <Output data={output} page={page} setPage={setPage} />
     </div>
   );
 }

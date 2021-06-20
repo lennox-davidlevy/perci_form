@@ -4,14 +4,24 @@
 .app_container {
   display: flex;
   flex-direction: row;
+  justify-content: center;
+  background-color: #f8f8fa;
+  gap: 15px;
+  padding: 40px;
 }
 
-.form_container {
-  width: 50%;
+.component_container {
+  width: 40%;
   padding: 20px;
+  background-color: white;
+  border-radius: 6px;
+  min-height: 600px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
-.form_container > label,
+.component_container > label,
 select,
 input {
   display: block;
@@ -23,14 +33,53 @@ select {
   font-size: 15px;
   width: 100%;
   height: 30px;
+  margin: 10px 0 10px 0;
+  border: 1px solid rgba(0, 0, 0, 0.2);
 }
+
 .list_items {
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
   gap: 5px;
   padding: 2px;
+  color: blue;
+}
+.list_items > div {
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  border-radius: 16px;
+  padding: 4px;
+}
+.list_items > ::after {
+  content: ' x';
 }
 .change_page_container {
   display: flex;
   gap: 12px;
+  justify-content: center;
+}
+.ouput_display_container {
+  height: 100%;
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  border-radius: 5px;
+  margin: 10px 0 10px 0;
+  padding: 10px;
+}
+
+.component_title {
+  margin: 0 0 10px 0;
+  font-size: 20px;
+  color: rgba(0, 0, 0, 0.6);
+  text-transform: capitalize;
+}
+
+@media only screen and (max-width: 1000px) {
+  .app_container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .component_container {
+    width: 75%;
+  }
 }
