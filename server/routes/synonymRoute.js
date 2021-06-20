@@ -15,8 +15,8 @@ router.post('/', async (req, res, next) => {
   const fetchURL = (url) => axios.get(url);
   const promiseArray = synonymCalls.map(fetchURL);
   try {
-    const res = await Promise.all(promiseArray);
-    const syn = res.map((item) => {
+    const response = await Promise.all(promiseArray);
+    const syn = response.map((item) => {
       return item.data[0];
     });
     let synArray = syn.map((item) => {
