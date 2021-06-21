@@ -16,7 +16,7 @@ const Output = ({ data, page, setPage }) => {
   return (
     <div className="component_container">
       <div className="top_control">
-        <div className="component_title">GTP-3 arguments</div>
+        <div className="component_title">GPT-3 arguments</div>
         <button onClick={() => setShowJSON(!showJSON)}>Show JSON</button>
       </div>
       {data.length === 0 && <div className="ouput_display_container"></div>}

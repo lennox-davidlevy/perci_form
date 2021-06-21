@@ -119,3 +119,7 @@ button {
 ul {
   list-style: none;
 }
+
+.text_display > div {
+  margin-bottom: 6px;
+}
